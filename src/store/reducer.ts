@@ -1,0 +1,1 @@
+const reducer (action: ArticleAction)
