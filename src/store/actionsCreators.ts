@@ -1,3 +1,5 @@
+import { IArticle } from "../client/article/article-dto";
+
 // ActionTypes
 enum articleActionTypes {
   AddArticle = "ADD_ARTICLE",
@@ -9,6 +11,11 @@ export type ArticleAction = {
   type: string;
   article: IArticle;
 };
+
+export type ArticleState = {
+  articles: IArticle[];
+}
+
 
 // Actions Creators
 export const addArticle = (article: IArticle): ArticleAction => {
