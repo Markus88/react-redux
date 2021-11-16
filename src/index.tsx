@@ -1,18 +1,18 @@
-import "./index.css";
+import { render } from "react-dom";
+import { createStore, applyMiddleware, Store } from "redux";
+import { Provider } from "react-redux";
+
+import App from "./App";
 import {
   ArticleAction,
   ArticleState,
   DispatchType,
 } from "./components/article/store/actionsCreators";
-import { applyMiddleware, Store, createStore } from "redux";
-import { Provider } from "react-redux";
 import { articleReducer } from "./components/article/store/reducer";
-import { render } from "@testing-library/react";
 
-const store: Store<ArticleState, ArticleAction> = createStore(
-  articleReducer,
-  applyMiddleware()
-);
+const store: Store<ArticleState, ArticleAction> & {
+  dispatch: DispatchType;
+} = createStore(articleReducer, applyMiddleware());
 
 const rootElement = document.getElementById("root");
 render(
