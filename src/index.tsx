@@ -9,10 +9,16 @@ import {
   DispatchType,
 } from "./components/article/store/actionsCreators";
 import { articleReducer } from "./components/article/store/reducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const store: Store<ArticleState, ArticleAction> & {
-  dispatch: DispatchType;
-} = createStore(articleReducer, applyMiddleware());
+const enhancer = composeWithDevTools(applyMiddleware());
+
+const composedEnhancers = composeWithDevTools(enhancer);
+const store = createStore(articleReducer, composedEnhancers);
+
+// const store: Store<ArticleState, ArticleAction> & {
+//   dispatch: DispatchType;
+// } = createStore(articleReducer, applyMiddleware());
 
 const rootElement = document.getElementById("root");
 render(
